@@ -12,7 +12,10 @@ export class SidebarComponent {
   get historial():string[]{
     return this.gifsService.historial;
   }
-
+  
+  buscar(termino:string){
+    this.gifsService.buscarGifs(termino);
+  }
   constructor(private gifsService:GifsService){
 
   }
