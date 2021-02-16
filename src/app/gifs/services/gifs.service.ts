@@ -18,6 +18,7 @@ export class GifsService {
   constructor(private http: HttpClient ){
 
      this._historial = JSON.parse (localStorage.getItem('historial')!) ||[];
+     this.resultados = JSON.parse (localStorage.getItem('ultimoResultado')!)|| []
 
   }
 
@@ -33,8 +34,8 @@ export class GifsService {
     }
     this.http.get<SearchGifsResponce>(`https://api.giphy.com/v1/gifs/search?api_key=${this.apykey}&q=${query}&limit=10`)
       .subscribe((resp) =>{
-        console.log(resp);
         this.resultados = resp.data;
+        localStorage.setItem('ultimoResultado', JSON.stringify(resp.data))
       });
 
   }
